@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :content_pieces
   resources :milestones
   resources :organizations
   resources :projects
