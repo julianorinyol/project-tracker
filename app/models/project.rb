@@ -3,4 +3,6 @@ class Project < ActiveRecord::Base
   belongs_to :organization
   has_many :milestones
   has_many :content_pieces
+
+  validates :description, :name, :organization_id, presence: true
 end
