@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20151014195157) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "table_projects_students", force: :cascade do |t|
-    t.integer "students_id"
-    t.integer "projects_id"
+  create_table "projects_users", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "project_id"
   end
 
   create_table "users", force: :cascade do |t|
