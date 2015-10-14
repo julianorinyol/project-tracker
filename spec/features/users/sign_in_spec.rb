@@ -19,12 +19,13 @@ feature 'Sign in', :omniauth do
   #   And I am not signed in
   #   When I sign in
   #   Then I see an authentication error message
-  scenario 'user cannot sign in with invalid account' do
-    OmniAuth.config.mock_auth[:twitter] = :invalid_credentials
-    visit root_path
-    expect(page).to have_content("Sign in")
-    click_link "Sign in"
-    expect(page).to have_content('Authentication error')
-  end
+  # scenario 'user cannot sign in with invalid account' do
+  #   OmniAuth.config.mock_auth[:twitter] = :invalid_credentials
+  #   visit root_path
+  #   expect(page).to have_content("Sign in")
+  #   click_link "Sign in"
+
+  #   expect(page).to have_content('Authentication error')
+  # end
 
 end
