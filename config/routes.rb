@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :milestones
   resources :organizations
   resources :projects
   root to: 'visitors#index'
