@@ -9,10 +9,7 @@ feature 'Leader browsing organizations', :omniauth do
   #   And there are 5 organizations 2 of which are mine
   #   When I sign in
   #   Then I see a list of 2 organizations and another list of 3 organizations
-  scenario "Leader can browse organizations" do
-    # create_x_many_objects(2, 'organization')
-    #also creates 1 organization and 1 leader
-    # binding.pry
+  scenario "Leader visits page of own org" do
     login_and_select_role 'Leader'
     create_x_many_objects(3, 'organization')
     l=create(:leader)
@@ -20,11 +17,24 @@ feature 'Leader browsing organizations', :omniauth do
     create(:organization, leader: l)
     click_link("Organizations")
 
-    my_orgs = find_all(".my-org-row")
-    other_orgs = find_all(".other-org-row")
+    my_org = find_all(".my-org-row").sample.find(".show-link").click
+    expect(/(organizations)\/[0-9]+/).to match(current_path)
 
-    expect(my_orgs.size).to eq 3
-    expect(other_orgs.size).to eq 2
-    expect(Organization.count).to eq 5
+    expect(page).to have_link "Edit"
+
   end
+  scenario "Leader visits page of someone else's org" do
+    login_and_select_role 'Leader'
+    create_x_many_objects(3, 'organization')
+    l=create(:leader)
+    create(:organization, leader: l)
+    create(:organization, leader: l)
+    click_link("Organizations")
+
+    other_orgs = find_all(".other-org-row").sample.find(".show-link").click
+
+    expect(/(organizations)\/[0-9]+/).to match(current_path)
+    expect(page).not_to have_link "Edit"
+  end
+
 end

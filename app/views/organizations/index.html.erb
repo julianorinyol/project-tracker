@@ -19,7 +19,7 @@
         <td><%= organization.contact_email %></td>
 
 
-        <td><%= link_to 'Show', organization %></td>
+        <td><%= link_to 'Show', organization, class: "show-link" %></td>
         <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
         <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -46,7 +46,7 @@
         <td><%= organization.name %></td>
         <td><%= organization.description %></td>
         <td><%= organization.contact_email %></td>
-        <td><%= link_to 'Show', organization %></td>
+        <td><%= link_to 'Show', organization, class: "show-link" %></td>
       </tr>
     <% end %>
   </tbody>
