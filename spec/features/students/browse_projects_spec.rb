@@ -22,20 +22,7 @@ feature 'Sign in as studuent', :omniauth do
     projects = find_all(".project-row")
     expect(projects.size).to eq 5
 
+    expect(has_content? "New Project").to be false
+
   end
-
-  # Scenario: User cannot sign in with invalid account
-  #   Given I have no account
-  #   And I am not signed in
-  #   When I sign in
-  #   Then I see an authentication error message
-  # scenario 'user cannot sign in with invalid account' do
-  #   OmniAuth.config.mock_auth[:twitter] = :invalid_credentials
-  #   visit root_path
-  #   expect(page).to have_content("Sign in")
-  #   click_link "Sign in"
-
-  #   expect(page).to have_content('Authentication error')
-  # end
-
 end
