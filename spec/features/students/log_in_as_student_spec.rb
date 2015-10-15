@@ -9,12 +9,11 @@ feature 'Sign in as studuent', :omniauth do
   #   And I am not signed in
   #   When I sign in
   #   Then I see a success message
-  scenario "user can sign in with valid account" do
+  scenario "student can sign in with valid account" do
     signin
-
-    expect(page).to have_content("Choose role...")
-
-    #click_on    ""
+    expect(page).to have_content("Choose Role...")
+    find_by_id("choose-student-btn").click
+    expect(page).to have_content("Logged in as student")
   end
 
   # Scenario: User cannot sign in with invalid account
