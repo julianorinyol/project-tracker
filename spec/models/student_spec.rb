@@ -21,11 +21,15 @@ RSpec.describe Student, type: :model do
 
   # #*********************************Associations**********************************************************# 
 
-  it { is_expected.to have_many(:milestones) }                                           
   it { is_expected.to have_and_belong_to_many(:projects) }
-
+  it "can access projects through student" do 
+    s=create(:student)
+    [create(:project),create(:project),create(:project)].each do |project|
+      project.students << s 
+    end
+    expect(s.projects.size).to eq 3
+  end
   # has_and_belongs_to_many :projects
-  # has_many :milestones, through: :projects
 
   # #*********************************Methods**********************************************************# 
 

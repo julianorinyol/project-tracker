@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   get '/users/choose/student' => 'users#student'
   get '/users/choose/leader' => 'users#leader'
 
+  get '/projects/:id/join' => "projects#join"
+  get '/projects/:id/leave' => "projects#leave"
+
+
   resources :users
   root to: 'users#index'
   get '/auth/:provider/callback' => 'sessions#create'

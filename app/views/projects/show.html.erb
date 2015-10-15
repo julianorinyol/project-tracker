@@ -2,8 +2,15 @@
 
 <% if current_user.type == "Leader" &&  project.organization.leader_id == current_user.id %>
   <%= link_to 'Edit', edit_project_path(@project) %> 
+<% elsif current_user.type == "Student" %>
+  <% if @joined %>
+    <%= link_to 'Leave Project', '/projects/' + @project.id.to_s + "/leave", class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to 'Join Project', '/projects/' + @project.id.to_s + "/join", class: "btn btn-primary" %>
+  <% end %>
 <% end %>
 <%= link_to 'Back', projects_path %>
+
 
 <h2>Project Info</h2>
 <p>Project name: <%= @project.name %></p>

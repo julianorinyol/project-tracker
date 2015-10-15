@@ -5,6 +5,7 @@ class UsersController < ApplicationController
       @user = current_user
       page = 'choose-role'
     elsif current_user
+      @projects = Project.all
       page = "/projects/index"
     end
     render page

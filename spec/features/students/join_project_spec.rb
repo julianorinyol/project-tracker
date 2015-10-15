@@ -23,10 +23,11 @@ feature 'Student join project', :omniauth do
     expect(/(projects)\/[0-9]+/).to match(current_path)
     
     expect(page).to have_link "Join Project"
+    expect(page).not_to have_link "Leave Project"
 
     click_on "Join Project"
-
-    expect(page).to have_css(".content-form")
-
+    
+    expect(page).to have_link "Leave Project"
+    expect(page).not_to have_link "Join Project"
   end
 end

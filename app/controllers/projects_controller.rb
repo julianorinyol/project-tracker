@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :join, :leave]
 
   # GET /projects
   # GET /projects.json
@@ -11,6 +11,9 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @milestones = @project.milestones
+    if current_user.type == "Student"
+      @joined = current_user.projects.include?(@project)
+    end
   end
 
   # GET /projects/new
@@ -60,6 +63,14 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  def join
+    @project.students << current_user if current_user.type == "Student" && !@project.students.include?(current_user)
+    redirect_to @project
+  end
+  def leave
+    @project.students.delete(current_user) if current_user.type == "Student" && @project.students.include?(current_user)
+    redirect_to @project
   end
 
   private
