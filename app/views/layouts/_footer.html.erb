@@ -1,0 +1,5 @@
+<footer>
+  <% unless current_user.nil? || current_user.type.nil? %>
+    <p>Logged in as <%= current_user.type.downcase%></p>
+  <% end %>
+</footer>

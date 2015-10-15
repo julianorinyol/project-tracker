@@ -4,18 +4,20 @@ class UsersController < ApplicationController
     if !current_user.nil? && current_user.type.nil?
       @user = current_user
       page = 'choose-role'
+    elsif current_user
+      page = "/projects/index"
     end
     render page
   end
 
   def student
     current_user.update(type: 'Student')
-    redirect_to root_path
+    redirect_to projects_path
   end
 
   def leader
     current_user.update(type: 'Leader')
-    redirect_to root_path
+    redirect_to projects_path
   end
 
   private
