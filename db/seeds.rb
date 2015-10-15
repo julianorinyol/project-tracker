@@ -9,5 +9,5 @@
 l=Leader.create(name:"Donkey Anderson", provider:"facebook", uid:"123123")
 o=Organization.create(leader_id: l.id ,name: 'CatCo.', description: "Cat People: david bowie too" , contact_email: 'blabla@gmail.com' )
 p=Project.create(organization_id: o.id, name: 'cool cat website', description: 'a slick website for learning about cats')
-q=Project.create(organization_id: o.id, name: 'Banks for more trees', description: 'for some reason, banks want more trees')
-r=Project.create(organization_id: o.id, name: 'Pseudo-anarchist puppeteer mafia', description: 'tuesdays are silly pants day at the office')
+q=Project.create(organization_id: o.id, name: 'Banks for more trees', description: 'for some reason, banks want more trees, a website about that')
+r=Project.create(organization_id: o.id, name: 'Pseudo-anarchist puppeteer mafia', description: 'a website for politically-like-minded puppeteers')
