@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   resources :milestones
   resources :organizations
   resources :projects
+
+  get '/users/choose/student' => 'users#student'
+  get '/users/choose/leader' => 'users#leader'
+
+  resources :users
   root to: 'users#index'
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signin' => 'sessions#new', :as => :signin
