@@ -1,4 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_organization_path(@organization) %> |
 <%= link_to 'Back', organizations_path %>
+<% if current_user.type == "Leader" &&  @organization.leader_id == current_user.id %>
+  <%= link_to 'Edit', edit_organization_path(@organization) %> 
+<% end %>
+
+<h2>Organization Info</h2>
+<p>Organization name: <%= @organization.name %></p>
+<p>Organization description: <%= @organization.description %></p>
+<p>owned by : <%= @organization.name %></p>
+<p>contact: <%= @organization.contact_email %></p>
+
+<h2>Projects</h2>
+
+

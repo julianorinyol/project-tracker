@@ -4,7 +4,10 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = Organization.all
+    # @organizations = Organization.all
+
+    @my_orgs = current_user.organizations if current_user
+    @other_orgs = Organization.where.not(leader_id: current_user.id )
   end
 
   # GET /organizations/1
