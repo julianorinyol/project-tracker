@@ -6,7 +6,6 @@ RSpec.describe Leader, type: :model do
 
   it { is_expected.to validate_presence_of :uid }
   it { is_expected.to validate_presence_of :name }
-  it { is_expected.to validate_presence_of :type }
   it { is_expected.to validate_presence_of :provider }
 
   # create_table "users", force: :cascade do |t|
