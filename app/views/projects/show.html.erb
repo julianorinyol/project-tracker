@@ -19,7 +19,34 @@
 <p>contact: <%= @project.organization.contact_email %></p>
 
 <h2>Milestones</h2>
+<%= link_to "Add Milestone", new_milestone_path, class: "btn btn-primary" %>
 
+<table>
+  <thead>
+    <tr>
+      <th>Requirement</th>
+      <th>Due Date</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+<% if !@milestones.nil? %>
+  <tbody>
+    <% @milestones.each do |milestone| %>
+      <tr>
+        <td><%= milestone.requirement %></td>
+        <td><%= milestone.due_date %></td>
+        <td><%= milestone.status %></td>
+
+        <td><%= link_to 'Show', milestone %></td>
+        <% if current_user.type == "Employer" &&  @project.organization.employer_id == current_user.id %>
+          <td><%= link_to 'Edit', edit_milestone_path(milestone) %></td>
+          <td><%= link_to 'Destroy', milestone, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+<% end %>
+</table>
 
 <h2>Content</h2>
 

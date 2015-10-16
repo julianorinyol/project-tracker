@@ -2,8 +2,20 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.input :requirement %>
+  </div>
+    <div class="form-inputs">
+  <%= f.input :due_date, as: :date, start_year: Date.today.year,
+                              end_year: Date.today.year + 12,
+                              order: [:day, :month, :year] %>
+  </div>
+  <div class="form-inputs">
+  
   </div>
 
+  <div class="form-inputs">
+    <%= f.input :status, collection: ["unstarted", "in progress","marked for review", "complete"] %>
+  </div>
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
