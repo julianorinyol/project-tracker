@@ -1,5 +1,5 @@
 class MilestonesController < ApplicationController
-  before_action :set_milestone, only: [:show, :edit, :update, :destroy]
+  before_action :set_milestone, only: [:show, :edit, :update, :destroy, :mark_completed]
 
   # GET /milestones
   # GET /milestones.json
@@ -42,7 +42,10 @@ class MilestonesController < ApplicationController
       end
     end
   end
-
+  def mark_completed
+    @milestone.update(marked: true)
+    redirect_to @milestone.project
+  end
   # PATCH/PUT /milestones/1
   # PATCH/PUT /milestones/1.json
   def update

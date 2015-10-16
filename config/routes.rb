@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get '/projects/:id/join' => "projects#join"
   get '/projects/:id/leave' => "projects#leave"
+  get '/milestones/:id/mark' => "milestones#mark_completed"
 
 
   resources :users

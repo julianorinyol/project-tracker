@@ -43,6 +43,13 @@
           <td><%= link_to 'Edit', edit_milestone_path(milestone) %></td>
           <td><%= link_to 'Destroy', milestone, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
+        <% if current_user.type == "Student" &&  @joined %>
+            <% if milestone.marked.nil? || !milestone.marked   %>
+            <td><%= link_to "Mark Completed", "/milestones/" + milestone.id.to_s + "/mark", class: "mark-milestone-completed-btn" %></td>
+            <% elsif milestone.marked == true %>
+              <td>Waiting on review...</td>
+            <% end %>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
