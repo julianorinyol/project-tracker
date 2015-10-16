@@ -19,6 +19,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    @organizations = current_user.organizations
   end
 
   # GET /projects/1/edit
@@ -81,6 +82,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params[:project]
+      params[:project].permit(:name, :description, :organization_id)
     end
 end
