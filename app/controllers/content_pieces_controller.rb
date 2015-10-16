@@ -15,6 +15,8 @@ class ContentPiecesController < ApplicationController
   # GET /content_pieces/new
   def new
     @content_piece = ContentPiece.new
+    @projects = current_user.projects
+    # @milestones
   end
 
   # GET /content_pieces/1/edit
@@ -28,7 +30,7 @@ class ContentPiecesController < ApplicationController
 
     respond_to do |format|
       if @content_piece.save
-        format.html { redirect_to @content_piece, notice: 'Content piece was successfully created.' }
+        format.html { redirect_to @content_piece.project, notice: 'Content piece was successfully created.' }
         format.json { render :show, status: :created, location: @content_piece }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class ContentPiecesController < ApplicationController
   def update
     respond_to do |format|
       if @content_piece.update(content_piece_params)
-        format.html { redirect_to @content_piece, notice: 'Content piece was successfully updated.' }
+        format.html { redirect_to @content_piece.project, notice: 'Content piece was successfully updated.' }
         format.json { render :show, status: :ok, location: @content_piece }
       else
         format.html { render :edit }
@@ -69,6 +71,6 @@ class ContentPiecesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def content_piece_params
-      params[:content_piece]
+      params[:content_piece].permit(:text, :project_id, :milestone_id)
     end
 end

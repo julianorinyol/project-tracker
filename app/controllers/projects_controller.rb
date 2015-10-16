@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @milestones = @project.milestones
+    @content_pieces = @project.content_pieces
     if current_user.type == "Student"
       @joined = current_user.projects.include?(@project)
     end
