@@ -7,7 +7,7 @@ FactoryGirl.define do
 end
 
 # FactoryGirl.define do
-#   factory :leader do
+#   factory :employer do
 #     name { Faker::Name.first_name + " " + Faker::Name.last_name   } 
 #     provider {"twitter"}
 #     uid { "123abd"}

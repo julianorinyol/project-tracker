@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <%= link_to 'Back', organizations_path %>
-<% if current_user.type == "Leader" &&  @organization.leader_id == current_user.id %>
+<% if current_user.type == "Employer" &&  @organization.employer_id == current_user.id %>
   <%= link_to 'Edit', edit_organization_path(@organization) %> 
 <% end %>
 

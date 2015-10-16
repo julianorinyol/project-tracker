@@ -7,7 +7,7 @@ class OrganizationsController < ApplicationController
     # @organizations = Organization.all
 
     @my_orgs = current_user.organizations if current_user
-    @other_orgs = Organization.where.not(leader_id: current_user.id )
+    @other_orgs = Organization.where.not(employer_id: current_user.id )
   end
 
   # GET /organizations/1
@@ -28,7 +28,7 @@ class OrganizationsController < ApplicationController
   # POST /organizations.json
   def create
     @organization = Organization.new(organization_params)
-
+    @organization.employer = current_user
     respond_to do |format|
       if @organization.save
         format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
@@ -72,6 +72,6 @@ class OrganizationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
-      params[:organization]
+      params[:organization].permit(:name, :description, :contact_email)
     end
 end

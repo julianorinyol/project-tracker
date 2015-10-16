@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Leader, type: :model do
+RSpec.describe Employer, type: :model do
   
 #*********************************Validations**********************************************************# 
 

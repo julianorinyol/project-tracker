@@ -1,7 +1,7 @@
 # Feature: Sign in
-#   As a leader
+#   As a employer
 #   I want to sign in
-#   So I can visit leader's only parts of site
+#   So I can visit employer's only parts of site
 feature 'Sign in as studuent', :omniauth do
 
   # Scenario: User can sign in with valid account
@@ -9,11 +9,11 @@ feature 'Sign in as studuent', :omniauth do
   #   And I am not signed in
   #   When I sign in
   #   Then I see a success message
-  scenario "leader can sign in with valid account" do
+  scenario "employer can sign in with valid account" do
     signin
     expect(page).to have_content("Choose Role...")
-    find_by_id("choose-leader-btn").click
-    expect(page).to have_content("Logged in as leader")
+    find_by_id("choose-employer-btn").click
+    expect(page).to have_content("Logged in as employer")
   end
 
   # Scenario: User cannot sign in with invalid account

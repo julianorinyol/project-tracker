@@ -13,7 +13,7 @@ feature 'Sign in as studuent', :omniauth do
   scenario "signed in student can see a projects page" do
     
     create_x_many_objects(5, 'project')
-    #also creates 1 organization and 1 leader
+    #also creates 1 organization and 1 employer
 
     login_and_select_role 'student'
 

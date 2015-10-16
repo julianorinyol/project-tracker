@@ -16,7 +16,7 @@
         <td><%= project.name %></td>
         <td><%= project.description %></td>
         <td><%= link_to 'Show', project, class: 'show-link' %></td>
-        <% if current_user.type == "Leader" &&  project.organization.leader_id == current_user.id %>
+        <% if current_user.type == "Employer" &&  project.organization.employer_id == current_user.id %>
           <td><%= link_to 'Edit', edit_project_path(project) %></td>
           <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
@@ -27,6 +27,6 @@
 </table>
 
 <br>
-<% if current_user.type == "Leader" %>
+<% if current_user.type == "Employer" %>
   <%= link_to 'New Project', new_project_path %>
 <% end %>

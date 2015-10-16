@@ -1,7 +1,7 @@
 class Organization < ActiveRecord::Base
-  belongs_to :leader
+  belongs_to :employer
   has_many :projects
 
-  validates :leader_id, :name, :description, :contact_email, presence: true
+  validates :employer_id, :name, :description, :contact_email, presence: true
 
 end

@@ -1,3 +1,3 @@
-class Leader < User
+class Employer < User
   has_many :organizations
 end

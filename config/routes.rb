@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :projects
 
   get '/users/choose/student' => 'users#student'
-  get '/users/choose/leader' => 'users#leader'
+  get '/users/choose/employer' => 'users#employer'
 
   get '/projects/:id/join' => "projects#join"
   get '/projects/:id/leave' => "projects#leave"

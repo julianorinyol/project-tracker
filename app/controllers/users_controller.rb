@@ -16,8 +16,8 @@ class UsersController < ApplicationController
     redirect_to projects_path
   end
 
-  def leader
-    current_user.update(type: 'Leader')
+  def employer
+    current_user.update(type: 'Employer')
     redirect_to projects_path
   end
 
