@@ -26,7 +26,11 @@ feature 'Employer creates a project', :omniauth do
     expect(page).to have_css("#new_milestone")
     fill_in :milestone_requirement, with: "get lotsa stuff done yo"
     select "unstarted", from: "milestone_status" 
-    select Time.now, from: "milestone_due_date"
+    select "23", from: "milestone_due_date_3i"
+    select "November", from: "milestone_due_date_2i"
+    select 2016, from: "milestone_due_date_1i"
+    select p.name, from: "milestone_project_id"
+
     click_on "Create Milestone"
 
     expect(page).to have_content "get lotsa stuff done yo"

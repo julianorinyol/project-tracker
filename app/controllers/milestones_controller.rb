@@ -15,6 +15,12 @@ class MilestonesController < ApplicationController
   # GET /milestones/new
   def new
     @milestone = Milestone.new
+    @projects = []
+    current_user.organizations.each do |org|
+      org.projects.each do |proj|
+        @projects << proj
+      end
+    end 
   end
 
   # GET /milestones/1/edit
@@ -28,7 +34,7 @@ class MilestonesController < ApplicationController
 
     respond_to do |format|
       if @milestone.save
-        format.html { redirect_to @milestone, notice: 'Milestone was successfully created.' }
+        format.html { redirect_to @milestone.project, notice: 'Milestone was successfully created.' }
         format.json { render :show, status: :created, location: @milestone }
       else
         format.html { render :new }
@@ -69,6 +75,6 @@ class MilestonesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def milestone_params
-      params[:milestone].permit(:status, :due_date, :requirement)
+      params[:milestone].permit(:status, :due_date, :requirement, :project_id)
     end
 end
