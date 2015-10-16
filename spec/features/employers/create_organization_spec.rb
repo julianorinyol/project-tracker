@@ -27,8 +27,6 @@ feature 'Employer creates an organization', :omniauth do
     expect(/(organizations)\/[0-9]+/).to match(current_path)
 
     expect(page).to have_link "Edit"
-    binding.pry
-
   end
 end
 

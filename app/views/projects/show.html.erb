@@ -18,67 +18,78 @@
 <p>owned by : <%= @project.organization.name %></p>
 <p>contact: <%= @project.organization.contact_email %></p>
 
-<h2>Milestones</h2>
-<% if current_user.type == "Employer" && @project.organization.employer_id == current_user.id %>
-  <%= link_to "Add Milestone", new_milestone_path, class: "btn btn-primary" %>
-<% end %>
-<table>
-  <thead>
-    <tr>
-      <th>Requirement</th>
-      <th>Due Date</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-<% if !@milestones.nil? %>
-  <tbody>
-    <% @milestones.each do |milestone| %>
-      <tr class="milestone-row">
-        <td><%= milestone.requirement %></td>
-        <td><%= milestone.due_date.strftime("%b %d, %Y") %></td>
-        <td><%= milestone.status %></td>
-
-        <td><%= link_to 'Show', milestone %></td>
-        <% if current_user.type == "Employer" &&  @project.organization.employer_id == current_user.id %>
-          <td><%= link_to 'Edit', edit_milestone_path(milestone) %></td>
-          <td><%= link_to 'Destroy', milestone, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-        <% if current_user.type == "Student" &&  @joined %>
-            <% if milestone.marked.nil? || !milestone.marked   %>
-            <td><%= link_to "Mark Completed", "/milestones/" + milestone.id.to_s + "/mark", class: "mark-milestone-completed-btn" %></td>
-            <% elsif milestone.marked == true %>
-              <td>Waiting on review...</td>
-            <% end %>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-<% end %>
-</table>
-
-<h2>Content</h2>
-
-<% if current_user.type == "Student" && @joined %>
-  <%= link_to "Submit Content", new_content_piece_path, id: "submit-content-btn", class: "btn btn-primary" %>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-<% if !@content_pieces.nil? %>
-  <tbody>
-    <% @content_pieces.each do |content_piece| %>
+<div class="col-md-6">
+  <h2>Milestones</h2>
+  <table class="table" >
+    <thead>
       <tr>
-        <td><%= content_piece.text %></td>
-        <td><%= link_to 'Edit', edit_content_piece_path(content_piece) %></td>
-        
-        <td><%= link_to 'Destroy', content_piece, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Requirement</th>
+        <th>Due Date</th>
+        <th>Status</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-<% end %>
-</table>
+    </thead>
+  <% if !@milestones.nil? %>
+    <tbody>
+      <% @milestones.each do |milestone| %>
+        <tr class="milestone-row">
+          <td><%= milestone.requirement %></td>
+          <td><%= milestone.due_date.strftime("%b %d, %Y") %></td>
+          <td><%= milestone.status %></td>
+
+          <td><%= link_to 'Show', milestone %></td>
+          <% if current_user.type == "Employer" &&  @project.organization.employer_id == current_user.id %>
+            <td><%= link_to 'Edit', edit_milestone_path(milestone) %></td>
+            <td><%= link_to 'Destroy', milestone, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+          <% if current_user.type == "Student" &&  @joined %>
+              <% if milestone.marked.nil? || !milestone.marked   %>
+              <td><%= link_to "Mark Completed", "/milestones/" + milestone.id.to_s + "/mark", class: "mark-milestone-completed-btn" %></td>
+              <% elsif milestone.marked == true %>
+                <td>Waiting on review...</td>
+              <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+  </table>
+  <% if current_user.type == "Employer" && @project.organization.employer_id == current_user.id %>
+    <%= link_to "Add Milestone", new_milestone_path, class: "btn btn-primary" %>
+  <% end %>
+</div>
+<div class="col-md-6">
+  <h2>Content</h2>
+
+  <% if current_user.type == "Student" && @joined %>
+    <%= link_to "Submit Content", new_content_piece_path, id: "submit-content-btn", class: "btn btn-primary" %>
+  <% end %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Content</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+      </tr>
+    </thead>
+  <% if !@content_pieces.nil? %>
+    <tbody>
+      <% @content_pieces.each do |content_piece| %>
+        <tr>
+          <td><%= content_piece.text %></td>
+          <td><%= link_to 'Edit', edit_content_piece_path(content_piece) %></td>
+          
+          <td><%= link_to 'Destroy', content_piece, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+  </table>
+</div>
 
